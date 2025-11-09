@@ -1,0 +1,61 @@
+*{box-sizing:border-box} :root{
+  --bg:#0b0f14; --panel:#111823; --panel-2:#0f1520; --text:#e6edf7; --muted:#9fb1c6;
+  --accent:#4aa3ff; --grid:#1e2a3a; --good:#38d39f; --warn:#ffb454; --bad:#ff6b6b;
+}
+html,body{height:100%}
+body {
+  background: #fff; /* White background */
+  color: #222;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-header{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid #152236; background:var(--panel)}
+.site-header h1{margin:0; font-size:20px; letter-spacing:0.2px; color: #333;}
+.tabs{display:flex; gap:12px}
+.tab{padding:8px 12px; border-radius:999px; text-decoration:none; color:var(--text); border:1px solid #22324a; background:var(--panel-2)}
+.tab.active{border-color:var(--accent)}
+.tab.disabled{opacity:0.5; pointer-events:none}
+
+.layout{display:grid; grid-template-columns: 1fr 320px; gap:16px; padding:16px; max-width:1400px; margin:0 auto}
+.left{display:flex; flex-direction:column; gap:16px}
+.right{background:var(--panel); border:1px solid #152236; border-radius:16px; padding:16px; position:sticky; top:12px; height:fit-content}
+
+.topology-card, .plot-card{background:var(--panel); border:1px solid #152236; border-radius:16px; padding:12px; background: #fff; /* Ensure all main containers are white */; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); padding: 20px; margin-bottom: 20px;}
+.topology-header{display:flex; align-items:center; justify-content:space-between}
+.probe-hint{color:var(--muted); font-size:12px}
+
+.topology-svg{width:100%; height:auto; background:#fff; border-radius:12px; border:1px solid #1b2a42; padding:8px}
+.wire{stroke:#3b4f6b; stroke-width:3; fill:none}
+.wire.faint{stroke:#2a3a58; stroke-dasharray:4 4}
+.symbol{stroke:#e6edf7; stroke-width:3; fill:none}
+.symbol.inductor{stroke-width:4}
+.symbol.capacitor { stroke-width: 3; }
+.label{fill:#9fb1c6; font-size:14px; text-anchor:middle; dominant-baseline: middle;}
+.component:hover .symbol{stroke:var(--accent)}
+.component.highlight .symbol{stroke:var(--good)}
+
+.plot-card{padding:12px}
+.plot-controls{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; flex-wrap:wrap; background: #fff; /* Ensure these are also white */}
+.waveform-select{display:flex; flex-wrap:wrap; gap:12px; color:var(--muted); background: #fff; /* Ensure these are also white */}
+.btn{background:var(--panel-2); border:1px solid #22324a; color:var(--text); padding:8px 12px; border-radius:10px; cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+
+#plot{width:100%; background:#fff; border-radius:12px; border:1px solid #1b2a42}
+.legend{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+.legend .item{display:flex; align-items:center; gap:6px; color:var(--muted); font-size:12px}
+.legend .swatch{width:16px; height:2px; background:#ccc}
+
+.right h3{margin-top:0; color: #333;}
+.param{margin-bottom:12px}
+.param label{display:block; color:#c9d7e6; font-size:14px; margin-bottom:6px}
+.control{display:flex; gap:8px; align-items:center}
+input[type="range"]{appearance:none; width:100%; height:6px; border-radius:999px; background:#fff; outline:none}
+input[type="range"]::-webkit-slider-thumb{appearance:none; width:18px; height:18px; border-radius:50%; background:var(--accent); border:2px solid #0c1420; cursor:pointer}
+input[type="number"]{width:90px; background:#0f1524; color:var(--text); border:1px solid #1b2a42; padding:6px 8px; border-radius:8px}
+
+.note{border-top:1px dashed #27405c; margin-top:16px; padding-top:10px; color:var(--muted)}
+.site-footer{padding:12px 16px; color:#8a9fb8}

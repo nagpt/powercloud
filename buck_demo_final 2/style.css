@@ -1,0 +1,56 @@
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:#fff;
+  color:#1a1a1a;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  font-size: 16.5px;
+  margin:0;
+}
+
+.site-header{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; border-bottom:1px solid #e6e9ef; background:#fafbff}
+.site-header h1{margin:0; font-size:22px; letter-spacing:0.2px; color:#0f172a}
+.tabs{display:flex; gap:12px}
+.tab{padding:8px 12px; border-radius:999px; text-decoration:none; color:#0f172a; border:1px solid #d1d9e6; background:#fff}
+.tab.active{border-color:#4aa3ff}
+.tab.disabled{opacity:0.5; pointer-events:none}
+
+.layout{display:grid; grid-template-columns: 1fr 360px; gap:16px; padding:16px; max-width:1400px; margin:0 auto}
+.left{display:flex; flex-direction:column; gap:16px}
+.right{background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:16px; position:sticky; top:12px; height:fit-content}
+
+.topology-card, .plot-card{background:#fff; border:1px solid #e5e7eb; border-radius:14px; padding:16px; box-shadow:0 2px 6px rgba(0,0,0,.04)}
+.topology-header{display:flex; align-items:center; justify-content:space-between}
+.probe-hint{color:#475569; font-size:14px}
+
+.topology-svg{width:100%; height:auto; background:#fff; border-radius:12px; border:1px dashed #cbd5e1; padding:8px}
+.wire{stroke:#64748b; stroke-width:3; fill:none}
+.wire.faint{stroke:#94a3b8; stroke-dasharray:4 4}
+.symbol{stroke:#111827; stroke-width:3; fill:none}
+.symbol.inductor{stroke-width:4}
+.label{fill:#334155; font-size:15px; text-anchor:middle}
+.component:hover .symbol{stroke:#2563eb}
+.component.highlight .symbol{stroke:#16a34a}
+
+.plot-controls{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; gap:8px; flex-wrap:wrap}
+.waveform-select{display:flex; flex-wrap:wrap; gap:12px; color:#334155}
+.waveform-select strong{margin-right:6px}
+.btn{background:#fff; border:1px solid #cbd5e1; color:#0f172a; padding:8px 12px; border-radius:10px; cursor:pointer}
+.btn:hover{border-color:#2563eb}
+
+canvas{width:100%; background:#ffffff; border-radius:12px; border:1px solid #e5e7eb; display:block; margin-top:10px}
+
+.legend{display:flex; flex-wrap:wrap; gap:10px; margin-top:8px}
+.legend .item{display:flex; align-items:center; gap:6px; color:#475569; font-size:13px}
+.legend .swatch{width:16px; height:2px; background:#ccc}
+
+.right h3{margin-top:0; color:#0f172a; font-size:18px}
+.param{margin-bottom:14px}
+.param label{display:block; color:#0f172a; font-size:15px; margin-bottom:6px}
+.control{display:flex; gap:8px; align-items:center}
+input[type="range"]{appearance:none; width:100%; height:8px; border-radius:999px; background:#e2e8f0; outline:none}
+input[type="range"]::-webkit-slider-thumb{appearance:none; width:18px; height:18px; border-radius:50%; background:#2563eb; border:2px solid #fff; box-shadow:0 1px 2px rgba(0,0,0,.2); cursor:pointer}
+input[type="number"]{width:110px; background:#ffffff; color:#0f172a; border:1px solid #cbd5e1; padding:8px 10px; border-radius:10px; font-size:15px}
+
+.note{border-top:1px dashed #cbd5e1; margin-top:16px; padding-top:10px; color:#475569}
+.site-footer{padding:12px 16px; color:#475569}
