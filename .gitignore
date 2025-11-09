@@ -1,4 +1,20 @@
-node_modules/
+# keep only the site and demos
+/113A-virtualdemo/
+/buck_demo_final/
+/buck_demo_final 2/
+/buck_demo_final 3/
+/buck_demo_final_compact_fix/
+/buck_demo_final_r2/
+/*.zip
+
+# OS/editor
 .DS_Store
 Thumbs.db
-*.zip
+.vscode/
+
+# builds
+dist/
+build/
+
+# node
+node_modules/
