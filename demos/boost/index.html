@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Interactive Power Electronics Lab – Boost Converter</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <h1>Interactive Power Electronics Lab</h1>
+    <nav class="tabs">
+      <a class="tab active" href="#" id="tab-boost">Boost</a>
+      <a class="tab disabled" href="#" title="More topologies coming soon">Boost</a>
+      <a class="tab disabled" href="#" title="More topologies coming soon">Boost-Boost</a>
+    </nav>
+  </header>
+
+  <main class="layout">
+    <section class="left">
+      <div class="topology-card">
+        <div class="topology-header">
+          <h2>Boost Converter</h2>
+          <div class="probe-hint">
+            <span>Click a component to add its <b>voltage</b>. <kbd>⌘/Ctrl</kbd> + Click to add its <b>current</b>.</span>
+          </div>
+        </div>
+
+        <!-- Use provided SVG as image; overlay invisible hotspots for probing -->
+        <div class="figure-wrap" id="boost-figure">
+          <img src="assets/boost_user.svg" alt="Boost converter" class="figure-img"/>
+          <!-- Hotspots (percent coords, responsive) -->
+          <button class="hotspot" style="left:7%; top:55%; width:9%; height:28%" data-voltage="v_in" data-current="i_in" title="VIN"></button>
+          <button class="hotspot" style="left:22%; top:34%; width:9%; height:22%" data-voltage="v_sw" data-current="i_sw" title="Switch S"></button>
+          <button class="hotspot" style="left:30%; top:35%; width:8%; height:22%" data-voltage="v_d" data-current="i_d" title="Diode D"></button>
+          <button class="hotspot" style="left:46%; top:30%; width:12%; height:28%" data-voltage="v_l" data-current="i_l" title="Inductor L"></button>
+          <button class="hotspot" style="left:60%; top:26%; width:8%; height:45%" data-voltage="v_o" data-current="i_c" title="Capacitor C"></button>
+          <button class="hotspot" style="left:86%; top:28%; width:8%; height:42%" data-voltage="v_o" data-current="i_o" title="Load R"></button>
+        </div>
+      </div>
+
+      <div class="plot-card">
+        <div class="plot-controls">
+          <div class="waveform-select">
+            <strong>Voltages:</strong>
+            <label><input type="checkbox" class="wf-v" value="v_o" checked> v<sub>o</sub></label>
+            <label><input type="checkbox" class="wf-v" value="v_sw"> v<sub>sw</sub></label>
+            <label><input type="checkbox" class="wf-v" value="v_l"> v<sub>L</sub></label>
+            <label><input type="checkbox" class="wf-v" value="v_in"> v<sub>i</sub></label>
+          </div>
+          <div class="waveform-select">
+            <strong>Currents:</strong>
+            <label><input type="checkbox" class="wf-i" value="i_l" checked> i<sub>L</sub></label>
+            <label><input type="checkbox" class="wf-i" value="i_c"> i<sub>C</sub></label>
+            <label><input type="checkbox" class="wf-i" value="i_d"> i<sub>D</sub></label>
+            <label><input type="checkbox" class="wf-i" value="i_sw"> i<sub>S</sub></label>
+          </div>
+          <button id="reset-btn" class="btn">Reset to defaults</button>
+        </div>
+        <canvas id="plot-voltage" width="1100" height="220" aria-label="Voltage plot"></canvas>
+        <canvas id="plot-current" width="1100" height="220" aria-label="Current plot"></canvas>
+        <div class="legend" id="legend"></div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <h3>Parameters</h3>
+      <div class="param"><label>Input voltage Vi (V)</label>
+        <div class="control"><input type="range" id="Vi" min="3" max="48" step="0.1"/><input type="number" id="Vi_num" step="0.1"/></div></div>
+      <div class="param"><label>Switching frequency f<sub>sw</sub> (kHz)</label>
+        <div class="control"><input type="range" id="fsw" min="10" max="1000" step="1"/><input type="number" id="fsw_num" step="1"/></div></div>
+      <div class="param"><label>Duty cycle D (0–1)</label>
+        <div class="control"><input type="range" id="duty" min="0.05" max="0.95" step="0.001"/><input type="number" id="duty_num" step="0.001"/></div></div>
+      <div class="param"><label>Inductance L (µH)</label>
+        <div class="control"><input type="range" id="Lval" min="0.1" max="200" step="0.1"/><input type="number" id="Lval_num" step="0.1"/></div></div>
+      <div class="param"><label>Capacitance C (µF)</label>
+        <div class="control"><input type="range" id="Cval" min="1" max="10000" step="1"/><input type="number" id="Cval_num" step="1"/></div></div>
+      <div class="param"><label>Load R (Ω)</label>
+        <div class="control"><input type="range" id="Rval" min="0.1" max="200" step="0.1"/><input type="number" id="Rval_num" step="0.1"/></div></div>
+      <div class="param"><label>Periods (1–10)</label>
+        <div class="control"><input type="range" id="periods" min="1" max="10" step="1"/><input type="number" id="periods_num" step="1"/></div></div>
+      <div class="note">
+        <p><b>Model notes (v1):</b> Ideal boost in CCM. Duty sets V<sub>o</sub>=D·V<sub>i</sub>. Inductor ripple Δi<sub>L</sub>=((V<sub>i</sub>−V<sub>o</sub>)/L)·D·T<sub>s</sub>. Capacitor ripple obtained by integrating i<sub>C</sub>=i<sub>L</sub>−i<sub>o</sub> with zero-mean over a period.</p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>v1.1 • User-provided SVG with hotspots, nice ticks, periods slider, sticky parameters, hover highlights, fully working sliders.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
